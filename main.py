@@ -132,11 +132,226 @@ def create_customers():
                 }),
                 headers=auth
             )
+            
+            if role_res.ok == False:
+                print(name, "- - Rol eklenirken hata oluştu!")
+            
+            offering_items_res = requests.put(
+                f"{base_url}/tenants/{new_customer["id"]}/offering_items",
+                data=json.dumps({
+                    "offering_items": [
+                            {
+                                "name": "pg_base_storage",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "storage",
+                                "status": 1,
+                                "locked": False,
+                                "type": "infra",
+                                "infra_id": "d46a4b2a-2631-4f76-84cd-07ce3aed3dde",
+                                "measurement_unit": "bytes",
+                                "quota": {
+                                    "value": 0,
+                                    "overage": 0,
+                                    "version": 0
+                                }
+                            },
+                            {
+                                "name": "pg_base_workstations",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "workstations",
+                                "status": 1,
+                                "locked": False,
+                                "type": "count",
+                                "infra_id": None,
+                                "measurement_unit": "quantity"
+                            },
+                            {
+                                "name": "pg_base_servers",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "servers",
+                                "status": 1,
+                                "locked": False,
+                                "type": "count",
+                                "infra_id": None,
+                                "measurement_unit": "quantity"
+                            },
+                            {
+                                "name": "pg_base_vms",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "vms",
+                                "status": 1,
+                                "locked": False,
+                                "type": "count",
+                                "infra_id": None,
+                                "measurement_unit": "quantity"
+                            },
+                            {
+                                "name": "pg_base_mobiles",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "mobiles",
+                                "status": 1,
+                                "locked": False,
+                                "type": "count",
+                                "infra_id": None,
+                                "measurement_unit": "quantity"
+                            },
+                            {
+                                "name": "pg_base_m365_seats",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "mailboxes",
+                                "status": 1,
+                                "locked": False,
+                                "type": "count",
+                                "infra_id": None,
+                                "measurement_unit": "quantity"
+                            },
+                            {
+                                "name": "pg_base_websites",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "websites",
+                                "status": 1,
+                                "locked": False,
+                                "type": "count",
+                                "infra_id": None,
+                                "measurement_unit": "quantity"
+                            },
+                            {
+                                "name": "pg_base_gworkspace_seats",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "gsuite_seats",
+                                "status": 1,
+                                "locked": False,
+                                "type": "count",
+                                "infra_id": None,
+                                "measurement_unit": "quantity"
+                            },
+                            {
+                                "name": "pg_base_web_hosting_servers",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "web_hosting_servers",
+                                "status": 1,
+                                "locked": False,
+                                "type": "count",
+                                "infra_id": None,
+                                "measurement_unit": "quantity"
+                            },
+                            {
+                                "name": "pg_base_m365_mailboxes",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "o365_mailboxes",
+                                "status": 1,
+                                "locked": False,
+                                "type": "feature",
+                                "infra_id": None,
+                                "measurement_unit": "n/a"
+                            },
+                            {
+                                "name": "pg_base_m365_onedrive",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "o365_onedrive",
+                                "status": 1,
+                                "locked": False,
+                                "type": "feature",
+                                "infra_id": None,
+                                "measurement_unit": "n/a"
+                            },
+                            {
+                                "name": "pg_base_m365_sharepoint_sites",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "o365_sharepoint_sites",
+                                "status": 1,
+                                "locked": False,
+                                "type": "count",
+                                "infra_id": None,
+                                "measurement_unit": "quantity"
+                            },
+                            {
+                                "name": "pg_base_google_mail",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "google_mail",
+                                "status": 1,
+                                "locked": False,
+                                "type": "feature",
+                                "infra_id": None,
+                                "measurement_unit": "n/a"
+                            },
+                            {
+                                "name": "pg_base_google_drive",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "google_drive",
+                                "status": 1,
+                                "locked": False,
+                                "type": "feature",
+                                "infra_id": None,
+                                "measurement_unit": "n/a"
+                            },
+                            {
+                                "name": "pg_base_google_team_drive",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "google_team_drive",
+                                "status": 1,
+                                "locked": False,
+                                "type": "feature",
+                                "infra_id": None,
+                                "measurement_unit": "n/a"
+                            },
+                            {
+                                "name": "pg_base_m365_teams",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "o365_teams",
+                                "status": 1,
+                                "locked": False,
+                                "type": "count",
+                                "infra_id": None,
+                                "measurement_unit": "quantity"
+                            },
+                            {
+                                "name": "pg_base_hosted_exchange",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "hosted_exchange",
+                                "status": 1,
+                                "locked": False,
+                                "type": "count",
+                                "infra_id": None,
+                                "measurement_unit": "quantity"
+                            },
+                            {
+                                "name": "pg_base_nas",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": "pck_per_gigabyte",
+                                "usage_name": "nas",
+                                "status": 1,
+                                "locked": False,
+                                "type": "count",
+                                "infra_id": None,
+                                "measurement_unit": "quantity"
+                            }
+                        ]
+                }),
+                headers=auth
+            )
 
-            if role_res.ok == True:
+            if offering_items_res.ok == True:
                 print(name)
             else:
-                print(name, "- Rol eklenirken hata oluştu!")
+                print(name, "- Standart koruma eklenirken hata oluştu!")
 
         print("------------------------")
         print("Tüm işlemler tamamlandı!")
