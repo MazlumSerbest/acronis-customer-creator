@@ -1,7 +1,9 @@
+import os
 import json
 import requests
 import re
 from get_token import  base_url, get_auth
+from dotenv import load_dotenv
 
 def check_login(login):
     turkish_chars = "çÇğĞüÜöÖşŞıİ"
@@ -21,6 +23,8 @@ def create_customers():
     try:
         auth = get_auth()
         data = []
+        load_dotenv()
+        infra_id = os.getenv('INFRA_ID')
 
         with open("customer.json", "r") as file:
             data = json.load(file)
@@ -134,12 +138,23 @@ def create_customers():
             )
             
             if role_res.ok == False:
-                print(name, "- - Rol eklenirken hata oluştu!")
+                print(name, "- Rol eklenirken hata oluştu!")
             
             offering_items_res = requests.put(
                 f"{base_url}/tenants/{new_customer["id"]}/offering_items",
                 data=json.dumps({
                     "offering_items": [
+                            {
+                                "name": "local_storage",
+                                "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
+                                "edition": None,
+                                "usage_name": "local_storage",
+                                "status": 1,
+                                "locked": False,
+                                "type": "count",
+                                "infra_id": None,
+                                "measurement_unit": "bytes"
+                            },
                             {
                                 "name": "pg_base_storage",
                                 "application_id": "6e6d758d-8e74-3ae3-ac84-50eb0dff12eb",
@@ -148,13 +163,8 @@ def create_customers():
                                 "status": 1,
                                 "locked": False,
                                 "type": "infra",
-                                "infra_id": "d46a4b2a-2631-4f76-84cd-07ce3aed3dde",
-                                "measurement_unit": "bytes",
-                                "quota": {
-                                    "value": 0,
-                                    "overage": 0,
-                                    "version": 0
-                                }
+                                "infra_id": infra_id,
+                                "measurement_unit": "bytes"
                             },
                             {
                                 "name": "pg_base_workstations",
