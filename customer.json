@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "name": "Example",
+    "login": "example",
+    "password": "test1234",
+    "parent_id": "parent_client_id",
+    "email": "test@test.com"
+  }
+]
